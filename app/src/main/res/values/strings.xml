@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">armada</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_setup">Setup</string>
+    <string name="dialog_place_ship">place ship</string>
+    <string name="place">Place</string>
+    <string name="dialog_fire_missiles">Fire !</string>
+    <string name="fire">Fire !</string>
+    <string name="cancel">abort</string>
+</resources>
