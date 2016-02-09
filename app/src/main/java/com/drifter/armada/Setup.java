@@ -37,10 +37,11 @@ public class Setup extends AppCompatActivity {
     private int submarine = 3;
     private int battleship = 4;
     private int carrier = 5;
+    private int shpCnt;
 
 /*    Point[] coords = {new Point(0,0), new Point(0,1), new Point(0,2)};*/
     private PlayerFleet fleet;
-
+    private Set<Point> hitBox;
     private Switch s;
 
 
@@ -56,25 +57,24 @@ public class Setup extends AppCompatActivity {
         GridLayout gameBoard = (GridLayout) findViewById(R.id.gameBoard);
         gameBoard.setColumnCount(10);
         gameBoard.setRowCount(10);
-
         getWindowManager().getDefaultDisplay().getMetrics(new DisplayMetrics());
+        shpCnt=0;
 
 
-
-        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+/*        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked) {
                     //do stuff when Switch is ON
-                    Toast.makeText(getApplicationContext(), "The Switch is " + (isChecked ),
+                    Toast.makeText(getApplicationContext(), "The Switch is " + (isChecked),
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "The Switch is " + (isChecked ),
+                    Toast.makeText(getApplicationContext(), "The Switch is " + (isChecked),
                             Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        });*/
 
 
 
@@ -90,33 +90,45 @@ public class Setup extends AppCompatActivity {
                 chordButton.setTag(p);
 
 
-                // add click listener: 
+                // add click listener:
                 chordButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View btn) {
                         Button butt = (Button) btn;
                         Point p = (Point) butt.getTag();
-                        if (s.isChecked()){
+                        if (s.isChecked()) {
                             int hb = battleship;
-                           // Point[] hitBox = new  Point[hb];
-                            Set<Point> hitBox = new HashSet<Point>();
-                            if (p.y <= 9 - hb  ) {
+                            // Point[] hitBox = new  Point[hb];
+                            hitBox = new HashSet<Point>();
+                            if (p.y <= 9 - hb) {
+
                                 for (int i = 0; i < hb; i++) {
                                     hitBox.add(new Point(p.x, p.y + i));
-                                    chordButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+
+                                    //chordButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
                                 }
                             } else {
+
                                 for (int i = 0; i < hb; i++) {
                                     hitBox.add(new Point(p.x, p.y - i));
-                                    chordButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
-                                }
 
+                                    //chordButton.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                                }
+                                //Log.d(TAG, "You Clicked " +  p.toString() ); //+ shpCnt + " " + fleet.getFleet().toString());
                             }
-                            fleet = new PlayerFleet(hitBox);
-                            Log.d(TAG, "You Clicked " + p.x + " " + fleet.getFleet().toString());
+
+                            if (shpCnt < 5) {
+
+                                fleet = new PlayerFleet(shpCnt, hitBox);
+                                shpCnt++;
+                            }
+
+
+                            //Log.d(TAG, "fleet" + " " + fleet.getFleet().toString());// + fleet.getFleet().toString());
+
                         }
 
-                        Log.d(TAG, "You Clicked " + p.toString() );
+                        Log.d(TAG, "You Clicked " + p.toString());
                         Toast.makeText(getApplicationContext(), "The Switch is " + s.isChecked(),
                                 Toast.LENGTH_LONG).show();
 
@@ -126,11 +138,6 @@ public class Setup extends AppCompatActivity {
                         FragmentManager fm = getFragmentManager();
                         PlaceShip Fire = new PlaceShip();
                         Fire.show(fm, "Sample Fragment");*/
-
-
-
-
-
 
 
 //check for ship

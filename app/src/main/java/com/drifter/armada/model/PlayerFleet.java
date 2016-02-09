@@ -2,15 +2,16 @@ package com.drifter.armada.model;
 
 
 import android.graphics.Point;
+import android.util.Log;
 
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 public class PlayerFleet {
-    private Ship[] fleet = new Ship[1];
+    private Ship[] fleet = new Ship[5];
 
-
+    private static final String TAG = PlayerFleet.class.getSimpleName();
 
     private Ship destroyer;
     private Ship cruiser;
@@ -19,11 +20,11 @@ public class PlayerFleet {
     private Ship carrier;
 
 
-    public PlayerFleet(Set<Point> coords) {
+    public PlayerFleet(int i, Set<Point> coords) {
         //Point[] coords = {new Point(0,0), new Point(0,1), new Point(0,2)};
         Ship cruiser = new Ship("cruiser", coords);
-        this.fleet[0] = cruiser;
-
+        this.fleet[i] = cruiser;
+        Log.d(TAG, "add cruiser to "+i);
 
     }
 
@@ -45,7 +46,7 @@ public class PlayerFleet {
 /*            for (int j=0; j < shipChoords.size(); j++) {
 
             }*/
-        };
+        }
 
         return arraySet;
     }
