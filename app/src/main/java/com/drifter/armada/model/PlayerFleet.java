@@ -35,7 +35,7 @@ public class PlayerFleet {
             Log.d(TAG, "addArray :" + " " + it.next());
 
         }*/
-
+//ggg
     }
 
 /*    public PlayerFleet(Ship[] fleet) {
