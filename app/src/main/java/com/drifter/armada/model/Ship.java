@@ -2,6 +2,7 @@ package com.drifter.armada.model;
 
 
 import android.graphics.Point;
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,7 +11,7 @@ import java.util.Set;
 public class Ship {
 
     private String  shipName;
-
+    private static final String TAG = Ship.class.getSimpleName();
 
     private Cell[] shipCells;
    // private Point[] shipCoords;
@@ -24,6 +25,7 @@ public class Ship {
         this.setShipName(name);
         this.setSunk(false);
 
+       Log.d(TAG, "created ship at choords :" + coords.toString());
     }
 
 
@@ -38,6 +40,7 @@ public class Ship {
 
     public Set<Point> getShipCoords() {
         //Set<Point> arraySet = new HashSet<>(Arrays.asList(shipCoords));
+        Log.d(TAG, "ship choords :"+ shipCoords.toString());
         return shipCoords;
     }
 

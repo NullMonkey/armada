@@ -119,10 +119,13 @@ public class Setup extends AppCompatActivity {
 
                             if (shpCnt < 5) {
 
-                                fleet = new PlayerFleet(shpCnt, hitBox);
+                                String shipType = "";
+                                fleet = new PlayerFleet(shpCnt, hitBox, shipType);
+                                Log.d(TAG, "shpcnt" + " " + shpCnt);
                                 shpCnt++;
-                            }
 
+                            }
+                            fleet.getFleet();
 
                             //Log.d(TAG, "fleet" + " " + fleet.getFleet().toString());// + fleet.getFleet().toString());
 
